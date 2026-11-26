@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KamarController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-
     Route::resource('kamar', KamarController::class)
         ->except(['show']);
 });

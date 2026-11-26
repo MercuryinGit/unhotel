@@ -49,7 +49,7 @@ class KamarController extends Controller
     // 4. Menampilkan form edit kamar
     public function edit(Kamar $kamar)
     {
-        return view('kamar.edit', compact('kamar'));
+        return view('kamar.edit', compact('kamars'));
     }
 
     // 5. Memperbarui data kamar
