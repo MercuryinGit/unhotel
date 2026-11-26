@@ -1,42 +1,56 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-<nav
-    class="navbar navbar-expand-sm navbar-light bg-light"
->
-    <div class="container position-relative">
-        <a class="navbar-brand" href="#">UntitledStay</a>
-        <button
-            class="navbar-toggler d-lg-none"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavId">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Kamar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disbaled" href="#">Fasilitas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Promo</a>
-                </li>
-                <li>
-                    <a class="nav-link disabled" href="#">Lokasi</a>
-                </li>
-            </ul>
+<x-navbar></x-navbar>
+<div class="bg-primary">
+    <div class="container p-3">
+        <p class="fw-bold text-white-50 font-sans">MENGINAP NYAMAN, CERITA BERKESAN</p>
+        @auth
+            @if (in_array(auth()->user()->role, ['admin', 'super_admin'], true))
+                <span class="badge text-bg-danger me-2 fw-bold text-white font-sans">
+                    Kamu {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : 'Admin' }}
+                </span>
+            @endif
+        @endauth
+        <br>
+        @auth
+            <span class="navbar-text me-3 fw-bold text-white font-sans">
+                Halo, {{ auth()->user()->name }}
+            </span>
+        @endauth
+        <h1 class="text-white">Temukan & Pesan Hotel Impianmu dengan Harga Terbaik</h1>
+        <p class="text-white">Pilihan penginapan lengkap mulai dari hotel berbintang hingga vila nyaman di seluruh
+            indonesia</p>
+        <div class="card text-start">
+            <div class="card-body">
+                <h4 class="card-title">Rencanakan Masa Menginap anda</h4>
+                <div class="container">
+                    <form method="GET">
+                        <div class="row row-cols-1 g-3 justify-content-evenly">
+                            <div class="col-10 col-sm-5 col-lg-2">
+                                <label for="" class="form-label text-black-50">Tanggal Check-In</label>
+                                <input type="date" class="form-control" name="" id="" aria-describedby="helpId"
+                                    placeholder="" />
+                            </div>
+                            <div class="col-10 col-sm-5 col-lg-2">
+                                <label for="" class="form-label text-black-50">Tanggal Check-Out</label>
+                                <input type="date" class="form-control" name="" id="" aria-describedby="helpId"
+                                    placeholder="" />
+                            </div>
+                            <div class="col-10 col-sm-5 col-lg-2">
+                                <label for="" class="form-label text-black-50">Jumlah Tamu</label>
+                                <input type="number" class="form-control" name="" id="" aria-describedby="helpId"
+                                    placeholder="" />
+                            </div>
+                            <div class="col-10 col-sm-5 col-lg-2">
+                                <label for="" class="form-label text-black-50">Jumlah Kamar</label>
+                                <input type="number" class="form-control" name="" id="" aria-describedby="helpId"
+                                    placeholder="" />
+                            </div>
+                            <div class="col-10 col-sm-5 col-lg-2 d-grid">
+                                <button type="submit" class="btn bg-info text-white fw-bold">Cek Ketersediaan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="d-flex align-items-center">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="btn btn-primary btn-sm">Logout</button>
-            </form>
     </div>
-</nav>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</div>
