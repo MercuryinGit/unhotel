@@ -24,25 +24,25 @@ class KamarController extends Controller
     // 3. Menyimpan kamar baru
     public function store(Request $request)
     {
-        $request->validate([
-            'nomor_kamar' => 'required|unique:kamars,nomor_kamar',
-            'tipe_kamar' => 'required',
+        $validated = $request->validate([
+            'tipe_kamar' => 'required|in:Standar,Deluxe,Suite',
             'harga_per_malam' => 'required|numeric|min:0',
             'kapasitas' => 'required|integer|min:1',
             'status' => 'required|in:tersedia,terisi,maintenance',
             'deskripsi' => 'nullable|string',
         ]);
 
-        Kamar::create($request->only([
-            'nomor_kamar',
-            'tipe_kamar',
-            'harga_per_malam',
-            'kapasitas',
-            'status',
-            'deskripsi',
-        ]));
+        $nomorKamarTerbesar = Kamar::query()
+            ->pluck('nomor_kamar')
+            ->filter(fn ($nomor) => ctype_digit((string) $nomor))
+            ->map(fn ($nomor) => (int) $nomor)
+            ->max() ?? 0;
 
-        return redirect()->route('kamar.index')
+        $validated['nomor_kamar'] = (string) ($nomorKamarTerbesar + 1);
+
+        Kamar::create($validated);
+
+        return redirect()->route('kamar.index', ['tab' => 'kamar'])
             ->with('success', 'Kamar berhasil ditambahkan!');
     }
 

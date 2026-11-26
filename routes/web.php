@@ -25,7 +25,7 @@ Route::middleware('guest')->group(function () {
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:admin,super_admin'])->group(function () {
     Route::resource('kamar', KamarController::class)
         ->except(['show']);
 });

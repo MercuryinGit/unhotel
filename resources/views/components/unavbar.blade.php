@@ -2,7 +2,7 @@
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container position-relative">
-        <a class="navbar-brand" href="{{ route('dashboard') }}">UntitledStay</a>
+        <a class="navbar-brand fw-bold" href="{{ route('dashboard') }}">UntitledStay</a>
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
             data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -11,19 +11,24 @@
         <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavId">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('kamar.*') ? 'text-primary' : 'text-black-50' }}" href="{{ route('kamar.index') }}">Kamar</a>
+                    <a class="nav-link {{ request()->routeIs('kamar.*') ? 'text-primary' : 'text-black-50' }}"
+                        href="{{ route('kamar.index') }}">Kamar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('fasilitas.*') ? 'text-primary' : 'text-black-50' }}" href="{{ route('fasilitas.index') }}">Fasilitas</a>
+                    <a class="nav-link {{ request()->routeIs('fasilitas.*') ? 'text-primary' : 'text-black-50' }}"
+                        href="#">Fasilitas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('promo.*') ? 'text-primary' : 'text-black-50' }}" href="{{ route('promo.index') }}">Promo</a>
+                    <a class="nav-link {{ request()->routeIs('promo.*') ? 'text-primary' : 'text-black-50' }}"
+                        href="#">Promo</a>
                 </li>
                 <li>
-                    <a class="nav-link {{ request()->routeIs('lokasi.*') ? 'text-primary' : 'text-black-50' }}" href="{{ route('lokasi.index') }}">Lokasi</a>
+                    <a class="nav-link {{ request()->routeIs('lokasi.*') ? 'text-primary' : 'text-black-50' }}"
+                        href="#">Lokasi</a>
                 </li>
                 <li>
-                    <a class="nav-link {{ request()->routeIs('profil.*') ? 'text-primary' : 'text-black-50' }}" href="{{ route('profil.index') }}">Profil</a>
+                    <a class="nav-link {{ request()->routeIs('profil.*') ? 'text-primary' : 'text-black-50' }}"
+                        href="#">Profil</a>
                 </li>
             </ul>
         </div>
