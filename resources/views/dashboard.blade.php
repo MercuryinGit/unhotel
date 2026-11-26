@@ -32,9 +32,10 @@
             </ul>
         </div>
         <div class="d-flex align-items-center">
-            @auth
-                <a href="" class="btn btn-primary btn-sm">LogOut</a>
-            @endauth
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-primary btn-sm">Logout</button>
+            </form>
     </div>
 </nav>
 
