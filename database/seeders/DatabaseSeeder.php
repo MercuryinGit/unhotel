@@ -15,7 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        
+        $this->call([
+            KamarSeeder::class,
+            FasilitasSeeder::class,
+            PromoSeeder::class,
+        ]);
 
         User::factory()->create([
             'name' => 'super_admin',
@@ -37,7 +41,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('user123'),
             'role' => 'user',
         ]);
-
 
     }
 }

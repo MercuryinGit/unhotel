@@ -7,6 +7,12 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## UntitledStay
+
+Hotel booking application with room search, date availability checks, authenticated reservations, customer profiles/history, promo codes, hotel facilities, and admin room/booking/content management. Seeded records are sample data; selected payment methods require staff confirmation (no payment gateway is connected). Set `HOTEL_ADDRESS` and optionally `HOTEL_MAP_URL` in `.env` to configure the location page.
+
+Run database migrations and sample room data with `php artisan migrate --seed`, then run the app with `php artisan serve`. Run the test suite with `php artisan test`.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

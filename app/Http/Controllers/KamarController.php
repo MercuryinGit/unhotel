@@ -13,12 +13,18 @@ class KamarController extends Controller
             ->latest()
             ->paginate(10);
 
-        return view('kamar.index', compact('kamars'));
+        $summary = [
+            'total' => Kamar::count(),
+            'available' => Kamar::where('status', 'tersedia')->count(),
+            'occupied' => Kamar::where('status', 'terisi')->count(),
+        ];
+
+        return view('kamar.index', compact('kamars', 'summary'));
     }
 
     public function create()
     {
-        return view('kamar.form', ['kamar' => null]);
+        return view('kamar.create');
     }
 
     public function store(Request $request)
@@ -48,7 +54,7 @@ class KamarController extends Controller
 
     public function edit(Kamar $kamar)
     {
-        return view('kamar.form', compact('kamar'));
+        return view('kamar.edit', compact('kamar'));
     }
 
     public function update(Request $request, Kamar $kamar)
@@ -69,6 +75,11 @@ class KamarController extends Controller
 
     public function destroy(Kamar $kamar)
     {
+        if ($kamar->bookings()->exists()) {
+            return redirect()->route('kamar.index', ['tab' => 'kamar'])
+                ->with('error', 'Kamar memiliki riwayat pemesanan dan tidak dapat dihapus.');
+        }
+
         $kamar->delete();
 
         return redirect()->route('kamar.index')
