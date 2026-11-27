@@ -37,7 +37,8 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard')->with('success', 'Registrasi berhasil. Anda telah login.');
+        return redirect()->route('dashboard')
+            ->with('success', 'Registrasi berhasil. Anda telah login.');
     }
 
     public function login(Request $request)
@@ -50,14 +51,15 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard'))->with('success', 'Login berhasil.');
+            return redirect()->intended(route('dashboard'))
+                ->with('success', 'Login berhasil.');
         }
 
         return back()->withErrors([
             'email' => 'Email atau password salah.',
         ])->onlyInput('email');
     }
-    
+
     public function logout(Request $request)
     {
         Auth::logout();

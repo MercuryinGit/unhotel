@@ -28,7 +28,7 @@ return new class extends Migration
             'maintenance'
         ])->default('tersedia');
 
-        $table->text('deskripsi')->nullable();
+        $table->text('deskripsi')->nullablme();
 
         $table->timestamps();
     });
