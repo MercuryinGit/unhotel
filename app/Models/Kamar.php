@@ -14,4 +14,16 @@ class Kamar extends Model
         'status',
         'deskripsi'
     ];
+
+    public function getStatusLabelAttribute(): string
+    {
+        $labels = [
+            'tersedia' => 'Available',
+            'terisi' => 'Occupied',
+            'cleaning' => 'Cleaning',
+            'maintenance' => 'Maintenance',
+        ];
+
+        return $labels[$this->status] ?? ucfirst($this->status);
+    }
 }
